@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Setter
@@ -23,6 +24,7 @@ public class Post {
 
     private String content;
 
+    @BatchSize(size = 50)
     @OneToMany(cascade = CascadeType.ALL)
     Set<Comment> comments = new HashSet<>();
 }
