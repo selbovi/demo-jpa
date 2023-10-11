@@ -10,4 +10,6 @@ public class PostDto {
     private Long id;
     private String content;
     private Set<CommentDto> comments;
+
+    private PostMetadataDto metadata;
 }

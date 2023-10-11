@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.BatchSize;
@@ -24,7 +25,10 @@ public class Post {
 
     private String content;
 
-    @BatchSize(size = 50)
+    @BatchSize(size = 100)
     @OneToMany(cascade = CascadeType.ALL)
     Set<Comment> comments = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "post")
+    PostMetadata metadata;
 }
