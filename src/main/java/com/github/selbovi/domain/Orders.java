@@ -1,5 +1,7 @@
 package com.github.selbovi.domain;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,15 +13,28 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-public class Comment {
-
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String commentText;
-
+    /**
+     * Дата продажи.
+     */
+    private LocalDate sellDate;
+    /**
+     * Цена продажи.
+     */
+    private Long price;
+    /**
+     * Менеджер.
+     */
     @ManyToOne(optional = false)
-    Post post;
+    private Buyer buyer;
 
+    /**
+     * проданная модель.
+     */
+    @ManyToOne(optional = false)
+    private Auto auto;
 }
